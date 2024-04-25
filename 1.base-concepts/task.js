@@ -22,4 +22,5 @@ function solveEquation(a, b, c) {
   return arr;
 };
 
+
 solveEquation(1, 5, 4); // ok
