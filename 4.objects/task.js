@@ -31,10 +31,3 @@ Student.prototype.exclude = function(reason) {
    delete this.subject;
    delete this.marks;
 }
-
-let student = new Student("Василиса", "женский", 19);
-console.log(student.exclude('прогулы'));
-// expect(student.excluded).toEqual('прогулы');
-console.log(student.addMarks(5, 5, 5));
-   //  expect(student.marks).toBeUndefined();
-   //  expect(student.getAverage()).toEqual(0);
