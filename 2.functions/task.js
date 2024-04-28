@@ -32,13 +32,12 @@ function summElementsWorker(...arr) {
 };
 
 function differenceMaxMinWorker(...arr) {  
-  const max = Math.max(...arr);
-  const min = Math.min(...arr);
-
   if (arr.length === 0) {
-    return 0;
+      return 0;
   };
 
+  const max = Math.max(...arr);
+  const min = Math.min(...arr); 
   let diff = max - min;
   return diff;   
 };
