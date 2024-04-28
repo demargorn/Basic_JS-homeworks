@@ -21,6 +21,7 @@ function getArrayParams(...arr) {
   return {min:min, max:max, avg:+avg.toFixed(2)};
 };
 
+
 // задача 2
 function summElementsWorker(...arr) {
   if (arr.length === 0) {
@@ -32,7 +33,12 @@ function summElementsWorker(...arr) {
 
 function differenceMaxMinWorker(...arr) {  
   const max = Math.max(...arr);
-  const min = Math.min(...arr)
+  const min = Math.min(...arr);
+
+  if (arr.length === 0) {
+    return 0;
+  };
+
   let diff = max - min;
   return diff;   
 };
@@ -71,6 +77,7 @@ function averageEvenElementsWorker(...arr) {
   })
   return sum / count;
 };
+
 
 //задача 3
 function makeWork(arrOfArr, func) {
