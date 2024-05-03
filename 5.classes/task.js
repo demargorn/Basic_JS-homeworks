@@ -14,18 +14,17 @@ class PrintEditionItem {
       this.state <= (100 / 1.5) ? this.state *= 1.5 : this.state = 100;
    };
 
-   set stateItem(num) {
-      if (num < 0) {
+   set state(num) {
+      if (num <= 0) {
          this.state = 0;
-      } else if (num > 0) {
+      } else if (num > 100) {
          this.state = 100;
       } else {
-         this.state = num;         
+         this._state = num;         
       };
-   this._state = num;
    };
 
-   get stateItem() {
+   get state() {
       return this._state;
    };
 };
@@ -66,8 +65,8 @@ class DetectiveBook extends Book {
    };
 };
 
-const sherlock = new PrintEditionItem("Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе", 2019, 1008); // ok
-const picknick = new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168); // ok
+const sherlock = new PrintEditionItem("Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе", 2019, 1008);
+const picknick = new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168);
 
 
 // задание 2
@@ -116,10 +115,40 @@ library.addBook(new FantasticBook("Аркадий и Борис Стругацк
 library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
 library.addBook(new Magazine("Мурзилка", 1924, 60));
 
-// console.log(library.findBookBy("name", "Пкник на обочине")); //null
-// console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
 
-// console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
-// console.log(library.giveBookByName("Машина времени"));
-// console.log(library.giveBookByName("Мурзилка"));
-// console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 2
+// задание 3
+class Student {
+   constructor(name, gender, age) {
+      this.name = name;
+      this.gender = gender;
+      this.age = age;
+      this.marks = {};
+   };
+
+   addMark(mark, subject) {
+      if (mark < 2 || mark > 5 || !mark) {
+         return;
+      };
+      if (this.marks[subject] === undefined) {
+         this.marks[subject] = [];         
+      };
+      this.marks[subject].push(mark);
+   };
+
+   getAverageBySubject(subject) {
+      if (this.marks[subject] === undefined) {
+         return 0;
+      } else {
+         return this.marks[subject].reduce((acc, el) => acc += el, 0) / this.marks[subject].length;
+      };
+   };
+
+   getAverage() {  
+      if (Object.keys(this.marks).length === 0) {
+         return 0;
+      };
+      return Object.keys(this.marks).reduce((acc, el) => acc += this.getAverageBySubject(el), 0) / Object.keys(this.marks).length;      
+   };
+};
+
+const student = new Student("Олег Никифоров", 'male', 27);
