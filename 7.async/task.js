@@ -63,10 +63,3 @@ class AlarmClock {
       this.alarmCollection = [];
    }; 
 };
-
-const clock = new AlarmClock();
-
-clock.addClock("16:45", f => f);
-clock.addClock("16:45", f => f);
-clock.addClock("16:45", f => f);
-console.log(clock.alarmCollection.length);
