@@ -3,19 +3,17 @@
 class AlarmClock {
    constructor() {
       this.alarmCollection = [];
-      this.timerId = null;
+      this.intervalId = null;
    };
 
    addClock(time, callback) {
-      this.time = new Date().setHours(hours, minutes);
       if (!time || !callback) {
          throw new Error('Отсутствуют обязательные аргументы');
       };
 
-      const existingTimeIndexes = this.alarmCollection.map(call => call.time).indexOf(time);
-      if (existingTimeIndexes !== -1) {
+      const timeIndex = this.alarmCollection.map(call => call.time).indexOf(time);
+      if (timeIndex !== -1) {
          console.warn('Уже присутствует звонок на это же время');
-         return;
       };
 
       this.alarmCollection.push({
@@ -33,7 +31,7 @@ class AlarmClock {
       const now = new Date();
       const hours = now.getHours();
       const minutes = now.getMinutes();
-      return `${hours < 10 ? '0' + hours : hours} : ${minutes < 10 ? '0' + minutes : minutes}`;
+      return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
    };
   
    start() {
@@ -65,3 +63,10 @@ class AlarmClock {
       this.alarmCollection = [];
    }; 
 };
+
+const clock = new AlarmClock();
+
+clock.addClock("16:45", f => f);
+clock.addClock("16:45", f => f);
+clock.addClock("16:45", f => f);
+console.log(clock.alarmCollection.length);
