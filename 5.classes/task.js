@@ -11,7 +11,7 @@ class PrintEditionItem {
    };
 
    fix() {
-      this.state <= (100 / 1.5) ? this.state *= 1.5 : this.state = 100;
+      this.state *= 1.5;
    };
 
    set state(num) {
@@ -83,27 +83,16 @@ class Library {
    };
 
    findBookBy(type, value) {
-      let book = null;
-
-      this.books.forEach(el => {
-         for (let key in el) {
-            if ((type === key) && (value === el[key])) {
-               book = el;
-            };
-         };
-      });
-      return book;
+      const findResult = this.books.find(item => item[type] === value);
+      return findResult || null;
    };
 
    giveBookByName(bookName) {
-      let book = null;
-
-      this.books.forEach((el, i) => {
-         if (bookName === el.name) {
-            this.books.splice(i, 1);
-            book = el;
-         };
-      });
+      const book = this.findBookBy("name", bookName);
+      if (!book) {
+         return null;
+      };
+      this.books = this.books.filter(item => item.name !== bookName);
       return book;
    };
 };
