@@ -2,7 +2,7 @@
 
 // задание 1
 const parseCount = (number) => {
-   if (!Number(number) && number != []) {
+   if (!Number(number)) {
       throw new Error("Невалидное значение");
    } else {
       return Number.parseFloat(number);
@@ -34,19 +34,17 @@ class Triangle {
    };
 
    get area() {
-      this.halfPmetr = this.perimeter / 2;
-      return Number(Math.sqrt(this.halfPmetr * (this.halfPmetr - this.a) * (this.halfPmetr - this.b) * (this.halfPmetr - this.c)).toFixed(3));
+      const halfPmetr = this.perimeter / 2;
+      return Number(Math.sqrt(halfPmetr * (halfPmetr - this.a) * (halfPmetr - this.b) * (halfPmetr - this.c)).toFixed(3));
    };
 };
 
 function getTriangle(a, b, c) {
-   let newTriangle;
-
    try {
-      return newTriangle = new Triangle(a, b, c);
+      return new Triangle(a, b, c);
    } catch (error) {
       console.log(error);
-      return newTriangle = {
+      return {
          get area() {
             return `Ошибка! Треугольник не существует`;
          },
