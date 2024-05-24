@@ -11,8 +11,8 @@ class AlarmClock {
          throw new Error('Отсутствуют обязательные аргументы');
       };
 
-      const timeIndex = this.alarmCollection.map(call => call.time).indexOf(time);
-      if (timeIndex !== -1) {
+      const timeIndex = this.alarmCollection.find(call => call.time === time);
+      if (!timeIndex) {
          console.warn('Уже присутствует звонок на это же время');
       };
 
